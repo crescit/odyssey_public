@@ -1,0 +1,69 @@
+version: '3.4'
+
+services:
+  api-gateway:
+    image: docker_account/odyssey:server
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/app"
+    environment: 
+      - GO111MODULE=on
+      - PG_USER=postgres
+      - PG_HOST=db
+      - PG_PASS=postgres
+      - PG_PORT=5432
+      - RUN_POSTGRES_MIGRATIONS=true
+      - RUNNING_DEV_SERVER=true
+      - HOST=api-gateway
+      - PORT=8080
+    entrypoint: "go run main.go"
+    depends_on:
+      - db
+
+  shopify-scraper:
+    image: docker_account/odyssey:scraper
+    ports:
+      - "5001:5000"
+    volumes:
+      - "/var/scraped_images"
+    entrypoint: "python3 server.py"
+  
+  client:
+    image: docker_account/odyssey:client
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    env_file: ./clients/odyssey/.env.docker
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=api-gateway
+      - REACT_APP_SCRAPER_URL=shopify-scraper
+      # add back env vars here
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+
+  nginx:
+    image: docker_account/odyssey:nginx
+    build:
+      context: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+      - shopify-scraper
+      - api-gateway
+      - db
+
+volumes:
+  db:
+    driver: local

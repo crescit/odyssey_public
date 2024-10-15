@@ -1,0 +1,106 @@
+.Form {
+  margin: 24px auto;
+  width: 90%;
+  max-width: 500px;
+  min-width: var(--width-mobile);
+  border-radius: 8px;
+  border: solid 1px var(--border);
+}
+
+.HeadingText {
+  margin: 16px auto 0 5%;
+}
+
+.FormGroup {
+  width: 90%;
+  margin: 8px auto;
+  padding-left: 30px;
+  border-radius: 4px;
+  border: solid 1px var(--border);
+}
+
+.FormRow {
+  display: flex;
+}
+
+.CardFormRow,
+.FormRow {
+  justify-content: space-between;
+  margin: 8px 8px;
+  width: 95%;
+}
+
+/* S2 font styling */
+.FormRowLabel,
+.FormRowInput {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+  font-family: var(--font);
+  padding: 8px;
+}
+
+.FormRowLabel { 
+  /* text-align: right; */
+  float: right;
+  width: 18%;
+  min-width: 60px;
+  margin: 0 8px 0 16px;
+}
+
+.FormRowInput {
+  width: 70%;
+  margin: 0 16px 0 8px;
+  border: none;
+  font-weight: normal;
+}
+
+.stateZip {
+  display: flex;
+}
+
+.FormRow.state {
+  justify-content: flex-start;
+  width: 55%;
+  margin: 0;
+  padding: 0 8px;
+}
+
+.FormRowLabel.state {
+  width: 37%;
+  margin: 0 8px 0 16px;
+}
+
+.FormRowInput.state {
+  width: 47%;
+  margin: 0 4px;
+}
+
+.FormRow.zipCode {
+  justify-content: flex-start;
+  width: 50%;
+  margin: 0;
+}
+
+.FormRowLabel.zipCode {
+  width: 10%;
+  min-width: 30px;
+  margin: 0 8px;
+  padding: 8px 0;
+}
+
+.FormRowInput.zipCode {
+  width: 60%;
+  margin: 0 8px;
+}
+
+.cardFormRow {
+  margin: 8px;
+}
+
+.SubmitButton {
+  width: 90%;
+  margin: 16px 5%;
+}

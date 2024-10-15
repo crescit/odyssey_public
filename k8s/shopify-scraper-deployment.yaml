@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: shopify-scraper-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: shopify-scraper
+    template:
+        metadata:
+            labels:
+                component: shopify-scraper
+        spec:
+            containers:
+                -   name: shopify-scraper
+                    # todo change this to the private image
+                    image: jjaquez/odyssey:scraper
+                    imagePullPolicy: Always
+                    ports:
+                        -   containerPort: 8080
+                    env:
+                        -   name: AUTH0_DOMAIN
+                            value: odysseycommerce.auth0.com
+                        -   name: AUTH0_AUDIENCE
+                            value: https://odysseycommerce.com/api
+                        -   name: IS_PRODUCTION_ENV
+                            value: true
+                        -   name: ODYSSEY_API_GW_ENDPOINT
+                            value: https://odysseycommerce.com/api
+                        -   name: AUTH0_CLIENT_ID
+                            value: get_your_own
+                        -   name: AUTH0_CLIENT_SECRET
+                            valueFrom:
+                                secretKeyRef:
+                                    name: auth0-client-secret
+                                    key: secret
+                        -   name: S3_BUCKET
+                            valueFrom: 
+                                secretKeyRef:
+                                    name: images3-secret
+                                    key: bucket
+                        -   name: S3_KEY
+                            valueFrom:
+                                secretKeyRef:
+                                    name: images3-secret
+                                    key: key
+                        -   name: S3_SECRET
+                            valueFrom:
+                                secretKeyRef:
+                                    name: images3-secret
+                                    key: secret
+                        -   name: IMAGE_DIRECTORY
+                            value: /var/scraped_images

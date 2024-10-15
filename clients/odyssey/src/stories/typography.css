@@ -1,0 +1,108 @@
+.storybook-typography {
+  font-family: 'lato';
+}
+
+.storybook-typography--h1 {
+  font-size: 96px;
+  font-style: 'normal';
+  font-weight: 300;
+  letter-spacing: -1.5px;
+}
+
+.storybook-typography--h2 {
+  font-size: 60px;
+  font-style: 'normal';
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.storybook-typography--h3 {
+  font-size: 48px;
+  font-style: 'normal';
+  font-weight: 'normal';
+}
+
+.storybook-typography--h4 {
+  font-size: 34px;
+  font-style: 'normal';
+  font-weight: 'normal';
+}
+
+.storybook-typography--h5 {
+  font-size: 24px;
+  font-style: 'normal';
+  font-weight: 'normal';
+  letter-spacing: 0.18px;
+}
+
+.storybook-typography--h6 {
+  font-size: 20px;
+  font-style: 'normal';
+  font-weight: 500;
+  letter-spacing: 0.15px;
+}
+
+.storybook-typography--s1 {
+  font-size: 16px;
+  font-style: 'normal';
+  font-weight: 'normal';
+  letter-spacing: 0.15px;
+}
+
+.storybook-typography--s2 {
+  font-size: 16px;
+  font-style: 'normal';
+  font-weight: 600;
+  letter-spacing: 0.15px;
+}
+
+.storybook-typography--s3 {
+  font-size: 14px;
+  font-style: 'normal';
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.storybook-typography--s3u {
+  font-size: 14px;
+  font-style: 'normal';
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  text-decoration: underline;
+}
+
+.storybook-typography--b1 {
+  font-size: 16px;
+  font-style: 'normal';
+  font-weight: 'normal';
+  letter-spacing: 0.5px;
+}
+
+.storybook-typography--b1u {
+  font-size: 16px;
+  font-style: 'normal';
+  font-weight: 'normal';
+  letter-spacing: 0.5px;
+  text-decoration: underline;
+}
+
+.storybook-typography--b2 {
+  font-size: 14px;
+  font-style: 'normal';
+  font-weight: 'normal';
+  letter-spacing: 0.25px;
+}
+
+.storybook-typography--bt14 {
+  font-size: 14px;
+  font-style: 'normal';
+  font-weight: 600;
+  letter-spacing: 1.25px;
+}
+
+.storybook-typography--by16 {
+  font-size: 16px;
+  font-style: 'normal';
+  font-weight: 600;
+  letter-spacing: 1.25px;
+}

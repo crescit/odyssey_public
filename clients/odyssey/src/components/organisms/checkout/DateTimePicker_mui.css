@@ -1,0 +1,59 @@
+.DateTime-wrapper {
+  width: 285px;
+}
+
+.Field-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0px;
+  position: static;
+  flex: none;
+  flex-grow: 0;
+  margin: 12px 0;
+}
+
+.Label-style {
+  font-family: var(--font);
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--lgmid-size);
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: var(--title);
+  text-align: left;
+}
+
+.MuiFormControl-root 
+.MuiOutlinedInput-adornedEnd {
+  padding-right: 0;
+}
+
+.MuiFormControl-root 
+.MuiOutlinedInput-adornedEnd 
+input {
+  padding: 7px 14px;
+  width: 85px;
+}
+
+.MuiFormControl-root 
+.MuiOutlinedInput-adornedEnd 
+.MuiInputAdornment-positionEnd
+button {
+  padding: 5px;
+}
+
+.MuiPickersToolbar-toolbar,
+.MuiPickersDay-daySelected,
+.MuiPickersClock-pin,
+.MuiPickersClockPointer-pointer,
+.MuiPickersClockPointer-noPoint {
+  background-color: var(--primary) !important;
+}
+
+.MuiPickersClockPointer-pointer
+.MuiPickersClockPointer-thumb {
+  border-color: var(--primary);
+}

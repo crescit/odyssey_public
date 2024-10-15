@@ -1,0 +1,52 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/clients/landing/node_modules
+/clients/odyssey/node_modules
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# secrets 
+/k8s/postgres-secret.yaml
+/k8s/auth0-client-secret.yaml
+/k8s/stripe-test-secret.yaml
+/k8s/images3-secret.yaml
+/k8s/positionstack-secret.yaml
+/k8s/auth0-mgmt-secret.yaml
+/services/shopify_scraper/odyssey-gmail-service-key.json
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/clients/odyssey/.env.docker
+/clients/landing/.env
+/clients/odyssey/.env
+/services/api-gateway
+/.env
+/services/api-gateway/.env.prod
+/services/api-gateway/db/postgres/_temp
+/services/shopify_scraper/.env
+/services/shopify_scraper/__pycache__
+amazon.pgp
+ecs-cli.asc
+token.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEA IDEs (Intellij, Webstorm, etc)
+/.idea
+
+# Ignore DevSpace cache and log folder
+.devspace/
+

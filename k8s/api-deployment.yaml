@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: api
+    template:
+        metadata:
+            labels:
+                component: api
+        spec:
+            containers:
+                -   name: api
+                    # todo change this to the private image
+                    image: jjaquez/odyssey:server
+                    imagePullPolicy: Always
+                    ports:
+                        -   containerPort: 8080
+                    env:
+                        -   name: PG_USER
+                            valueFrom:
+                                secretKeyRef: 
+                                    name: postgres-secret   
+                                    key: username
+                        -   name: PG_PASS
+                            valueFrom:
+                                secretKeyRef:
+                                    name: postgres-secret
+                                    key: password
+                        -   name: STRIPE_TEST_KEY
+                            valueFrom:
+                                secretKeyRef:
+                                    name: stripe-test-secret
+                                    key: secret
+                        -   name: STRIPE_TEST_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: stripe-test-secret
+                                    key: password
+                        -   name: POSITIONSTACK_SECRET
+                            valueFrom:
+                                secretKeyRef:
+                                    name: positionstack-secret
+                                    key: secret
+                        -   name: AUTH0_CLIENT_SECRET
+                            valueFrom:
+                                secretKeyRef:
+                                    name: auth0-client-secret
+                                    key: secret
+                        -   name: AUTH0_MGMT_CLIENT_SECRET
+                            valueFrom:
+                                secretKeyRef:
+                                    name: auth0-mgmt-secret
+                                    key: secret                
+                        -   name: IS_PRODUCTION_ENV
+                            value: true
+                        -   name: RUN_POSTGRES_MIGRATIONS 
+                            value: false
+                        -   name: PG_HOST
+                            value: get_your_own
+                        -   name: PG_PORT
+                            value: "5432"
+                        -   name: PG_DBNAME
+                            value: postgres
+                        -   name: AUTH0_DOMAIN
+                            value: odysseycommerce.auth0.com
+                        -   name: AUTH0_API_IDENTIFIER
+                            value: https://odysseycommerce.com/api
+                        -   name: AUTH0_ISSUER
+                            value: odysseycommerce.auth0.com
+                        -   name: SCRAPER_URL
+                            value: https://odysseycommerce.com/scraper
+                        -   name: AUTH0_MGMT_CLIENT_ID
+                            value: get_your_own
+                        -   name: AUTH0_CLIENT_ID
+                            value: get_your_own
+                        

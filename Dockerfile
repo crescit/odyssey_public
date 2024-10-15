@@ -1,0 +1,28 @@
+# build the go backend 
+FROM golang:1.14 AS builder
+RUN  mkdir /app
+ADD . /app
+WORKDIR /app/server 
+RUN go mod download 
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-w" -a -o /main .
+# build the react client 
+FROM node:12.16.3-alpine3.10 AS node_builder
+COPY --from=builder /app/client ./
+RUN npm install 
+RUN npm run build
+# build the production container 
+FROM alpine:latest 
+RUN apk --no-cache add ca-certificates
+RUN apk add --no-cache git make musl-dev go
+# Configure Go environmnet on pod 
+ENV GOROOT /usr/lib/go
+ENV GOPATH /go
+ENV PATH /go/bin:$PATH
+RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
+# finish building the production container
+COPY --from=builder /main ./
+COPY --from=node_builder /build ./web 
+RUN chmod +x ./main 
+EXPOSE 8080 
+CMD ./main
+ENTRYPOINT [ "./main" ]
